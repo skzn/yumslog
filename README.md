@@ -1,8 +1,8 @@
-# Astrofy | Personal Portfolio Website Template
+# Yumslog | Personal Blog & Portfolio
 
-![Astrofy | Personal Porfolio Website Template](public/social_img.webp)
+![Yumslog](public/social_img.webp)
 
-Astrofy is a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS. Create in minutes a website with a Blog, CV, Project Section, Store, and RSS Feed.
+Yumslogは、AstrofyテンプレートをベースにしたUI/UX Designer & CDO / App Creatorの個人ブログ兼ポートフォリオサイトです。AIとVibe Codingで『月3万稼ぐアプリ』を量産してFIREを目指す開発ログを公開しています。
 
 ## Demo
 
@@ -199,6 +199,59 @@ pubDate: "Post date format(Sep 10 2022)"
 heroImage: "Post Hero Image URL"
 ---
 ```
+
+##### Obsidian連携について
+
+Obsidianからブログ記事を投稿する際の完全対応が実装されています。
+
+**Obsidianの設定**
+
+1. Obsidianの設定で「ファイルとリンク」→「新規添付ファイルの保存先」を「現在のファイルと同じフォルダ」に設定
+2. 「Markdownリンク形式」を「相対パス」に設定（推奨）
+
+**記事の作成方法**
+
+記事は以下のフォルダ構造で作成します：
+
+```
+src/content/blog/
+└── my-article/
+    ├── index.md
+    ├── image1.png
+    └── image2.png
+```
+
+**frontmatterの記述例**
+
+```markdown
+---
+title: "記事のタイトル"
+description: "記事の説明文"
+pubDate: "Feb 07 2026"
+heroImage: "./hero.png"
+badge: "NEW"
+tags: ["tag1", "tag2"]
+---
+```
+
+**画像の指定方法**
+
+- **frontmatterの heroImage**: 相対パス `"./image.png"` または絶対パス `"/image.png"` の両方に対応
+- **本文中の画像**: Markdownの通常の記法 `![alt text](./image.png)` で記述
+
+**画像処理の仕組み**
+
+- 相対パス（`./image.png`）で指定された画像は、Astroが自動的に最適化します
+- 絶対パス（`/image.png`）で指定された画像は、`public/` フォルダから配信されます
+- どちらの方法でも、WebP変換や遅延読み込みなどの最適化が適用されます
+
+**ブログ一覧のレイアウト**
+
+ブログ一覧は3カラムのグリッドレイアウトで表示されます。アイキャッチ画像（heroImage）を設定することで、視覚的に魅力的な一覧ページになります。
+
+**テスト記事**
+
+`src/content/blog/test-obsidian-integration/` にObsidian連携のテスト記事があります。実際の動作を確認する際の参考にしてください。
 
 ### Pages
 

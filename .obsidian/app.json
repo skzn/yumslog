@@ -1,0 +1,11 @@
+{
+  "userIgnoreFilters": [
+    ".git",
+    ".astro",
+    "node_modules/dlv/dist/",
+    "node_modules/",
+    "node_modules"
+  ],
+  "attachmentFolderPath": "./",
+  "useMarkdownLinks": true
+}

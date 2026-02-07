@@ -11,14 +11,24 @@ const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
     <div class="hero-content flex-col md:flex-row">
       {
         img && (
-          <Image
-            src={img}
-            width={750}
-            height={422}
-            format="webp"
-            alt={title}
-            class="max-w-full md:max-w-[13rem] rounded-lg"
-          />
+          typeof img === 'string' ? (
+            <img
+              src={img}
+              width="750"
+              height="422"
+              alt={title}
+              class="max-w-full md:max-w-[13rem] rounded-lg"
+            />
+          ) : (
+            <Image
+              src={img}
+              width={750}
+              height={422}
+              format="webp"
+              alt={title}
+              class="max-w-full md:max-w-[13rem] rounded-lg"
+            />
+          )
         )
       }
       <div class="grow w-full">
