@@ -182,6 +182,13 @@
   },
   "active": "5a3b8dedb4bedc29",
   "lastOpenFiles": [
+    "node_modules/fsevents/package.json",
+    "node_modules/fsevents/fsevents.node",
+    "node_modules/fsevents/fsevents.js",
+    "node_modules/fsevents/fsevents.d.ts",
+    "node_modules/fsevents/README.md",
+    "node_modules/fsevents/LICENSE",
+    "node_modules/fsevents",
     "src/content/blog/test-obsidian-integration/index.md",
     "src/content/blog/test-obsidian-integration/sample-image.webp",
     "src/content/blog/test-obsidian-integration/hero.webp",
