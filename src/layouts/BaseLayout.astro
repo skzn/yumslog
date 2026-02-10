@@ -14,13 +14,32 @@ const {
   includeSidebar = true,
   sideBarActiveItemID,
   ogType,
+  siteName,
+  articlePublishedTime,
+  articleModifiedTime,
+  articleAuthor,
+  relPrev,
+  relNext,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="ja" data-theme="winter">
   <head>
-    <BaseHead title={title} description={description} image={image} , ogType={ogType} />
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      ogType={ogType}
+      siteName={siteName}
+      articlePublishedTime={articlePublishedTime}
+      articleModifiedTime={articleModifiedTime}
+      articleAuthor={articleAuthor}
+      relPrev={relPrev}
+      relNext={relNext}
+    >
+      <slot name="jsonld" slot="jsonld" />
+    </BaseHead>
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
@@ -29,7 +48,7 @@ const {
       <div class="drawer-content bg-base-100">
         <Header title={SITE_TITLE} />
         <div class="md:flex md:justify-center">
-          <main class="w-full p-6 pt-10 lg:max-w-[900px] max-w-[100vw]" style="width: 100%">
+          <main class="w-full p-3 pt-5 lg:p-4 lg:pt-6 lg:max-w-[1120px] max-w-[100vw]" style="width: 100%">
             <slot />
           </main>
         </div>

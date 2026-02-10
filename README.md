@@ -8,6 +8,12 @@ Yumslogは、AstrofyテンプレートをベースにしたUI/UX Designer & CDO 
 
 View a live demo of [Astrofy](https://astrofy-template.netlify.app/)
 
+## SEO
+
+- **Sitemap**: `@astrojs/sitemap` を利用。Astro 4 で `astro:routes:resolved` が未定義になる場合があるため、`patches/` で `_routes` の null 合体を当てています。`npm install` 後に `postinstall` で自動適用されます。
+- **robots.txt**: Sitemap URL は `https://yumslog.com/sitemap-index.xml` を参照。
+- **構造化データ**: トップは WebSite、記事は BlogPosting、ブログ/タグ一覧は BreadcrumbList の JSON-LD を出力。
+
 ## Installation
 
 Run the following command in your terminal

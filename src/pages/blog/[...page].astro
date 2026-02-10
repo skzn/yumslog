@@ -2,7 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Card from "../../components/Card.astro";
 import { getCollection } from "astro:content";
-import createSlug from "../../lib/createSlug"
+import createSlug from "../../lib/createSlug";
+import { SITE_URL } from "../../config";
 
 export async function getStaticPaths({ paginate }) {
   const posts = await getCollection("blog");
@@ -11,10 +12,29 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const { page } = Astro.props;
+const relPrev = page.url.prev ? new URL(page.url.prev, SITE_URL).href : undefined;
+const relNext = page.url.next ? new URL(page.url.next, SITE_URL).href : undefined;
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "Blog", item: new URL("/blog/", SITE_URL).href },
+  ],
+};
 ---
 
-<BaseLayout title="Blog" sideBarActiveItemID="blog">
-  <div class="mb-5">
+<BaseLayout
+  title="Blog"
+  description="yumslogのブログ一覧。UI/UX、開発、プロダクトに関する記事。"
+  sideBarActiveItemID="blog"
+  relPrev={relPrev}
+  relNext={relNext}
+>
+  <Fragment slot="jsonld">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  </Fragment>
+  <div class="mb-3">
     <div class="text-3xl w-full font-bold">Blog</div>
   </div>
 
@@ -25,7 +45,7 @@ const { page } = Astro.props;
         <p>There are no blog posts to show at the moment. Check back later!</p>
       </div>
     ) : (
-      <div class="flex flex-wrap -mx-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {page.data.map((post) => (
           <Card
             title={post.data.title}
@@ -44,7 +64,7 @@ const { page } = Astro.props;
   <div class="flex justify-between">
     {
       page.url.prev ? (
-        <a href={page.url.prev} class="btn btn-ghost my-10 mx-5">
+        <a href={page.url.prev} class="btn btn-ghost my-6 mx-2">
           {" "}
           <svg
             class="h-6 w-6 fill-current md:h-8 md:w-8"
@@ -63,7 +83,7 @@ const { page } = Astro.props;
     }
     {
       page.url.next ? (
-        <a href={page.url.next} class="btn btn-ghost my-10 mx-5">
+        <a href={page.url.next} class="btn btn-ghost my-6 mx-2">
           Older Posts{" "}
           <svg
             class="h-6 w-6 fill-current md:h-8 md:w-8"

@@ -1,3 +1,92 @@
 .time-line-container>div:last-child .education__time>.education__line {
     display: none;
 }
+
+/* ブログ記事：読みやすい行長・余白・文字サイズ・コントラスト */
+.post-content.prose { max-width: 65ch; font-size: 1rem; }
+.post-content.prose,
+.post-content p,
+.post-content li { color: color-mix(in srgb, var(--bc) 75%, black); }
+.post-content p { margin-top: 0.65em; margin-bottom: 0.65em; line-height: 1.75; }
+.post-content > * + * { margin-top: 0.75em; }
+
+/* 記事タイトル（h1）もコントラスト強め */
+.post-content h1.title { color: color-mix(in srgb, var(--bc) 98%, black); }
+
+/* 見出し：ミニマルでスタイリッシュ・コントラスト強め */
+.post-content h2 {
+  margin-top: 1.5em;
+  margin-bottom: 0.4em;
+  padding-bottom: 0.35em;
+  font-size: 1.3em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid var(--b3);
+  color: color-mix(in srgb, var(--bc) 98%, black);
+}
+.post-content h3 {
+  margin-top: 1.25em;
+  margin-bottom: 0.35em;
+  font-size: 1.12em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: color-mix(in srgb, var(--bc) 95%, black);
+}
+.post-content h4 {
+  margin-top: 1em;
+  margin-bottom: 0.3em;
+  font-size: 1.02em;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--bc) 92%, black);
+}
+
+/* 箇条書き・番号リスト */
+.post-content ul, .post-content ol { margin-top: 0.5em; margin-bottom: 0.5em; padding-left: 1.5em; }
+.post-content li { margin-top: 0.25em; margin-bottom: 0.25em; line-height: 1.7; }
+.post-content ul li { list-style-type: disc; }
+.post-content ul ul li { list-style-type: circle; }
+.post-content ol li { list-style-type: decimal; }
+.post-content li::marker { color: color-mix(in srgb, var(--bc) 85%, black); }
+
+/* 引用 */
+.post-content blockquote {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  padding: 0.5em 0 0.5em 1em;
+  border-left: 3px solid var(--p);
+  font-style: normal;
+  color: color-mix(in srgb, var(--bc) 78%, black);
+  background: var(--b2);
+  border-radius: 0 4px 4px 0;
+}
+.post-content blockquote p { margin: 0; }
+
+/* コード・インラインコード */
+.post-content code {
+  padding: 0.15em 0.4em;
+  font-size: 0.9em;
+  background: var(--b3);
+  border-radius: 4px;
+  font-weight: 500;
+}
+.post-content pre {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  padding: 1em 1.1em;
+  border-radius: 8px;
+  overflow-x: auto;
+  background: var(--b3);
+}
+.post-content pre code { padding: 0; background: transparent; }
+
+/* 表 */
+.post-content table { margin-top: 0.75em; margin-bottom: 0.75em; width: 100%; border-collapse: collapse; font-size: 0.9em; color: color-mix(in srgb, var(--bc) 75%, black); }
+.post-content th, .post-content td { padding: 0.5em 0.75em; border: 1px solid var(--b3); text-align: left; }
+.post-content th { font-weight: 600; background: var(--b2); color: color-mix(in srgb, var(--bc) 95%, black); }
+.post-content tbody tr:nth-child(even) { background: var(--b2); }
+
+/* 区切り線・リンク */
+.post-content hr { margin-top: 1em; margin-bottom: 1em; border-color: var(--b3); }
+.post-content a { color: color-mix(in srgb, var(--bc) 70%, black); text-decoration: underline; text-underline-offset: 2px; }
+.post-content a:hover { color: color-mix(in srgb, var(--bc) 95%, black); }
+.post-content strong { font-weight: 600; color: color-mix(in srgb, var(--bc) 90%, black); }

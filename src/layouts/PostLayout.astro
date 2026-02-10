@@ -3,29 +3,64 @@ import { type BlogSchema } from "../content/config";
 import BaseLayout from "./BaseLayout.astro";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-
-export interface Props extends BlogSchema {}
-
-const { title, description, pubDate, updatedDate, heroImage, badge, tags = [] } = Astro.props;
-dayjs.extend(localizedFormat);
-const displayDate = dayjs(pubDate).format("ll")
+import { SITE_URL } from "../config";
 import { Image } from "astro:assets";
+
+export interface Props extends BlogSchema {
+  prevPost?: { title: string; url: string };
+  nextPost?: { title: string; url: string };
+}
+
+const { title, description, pubDate, updatedDate, heroImage, badge, tags = [], prevPost, nextPost } = Astro.props;
+dayjs.extend(localizedFormat);
+const displayDate = dayjs(pubDate).format("ll");
+const articleImageUrl = heroImage
+  ? typeof heroImage === "string"
+    ? new URL(heroImage.startsWith("/") ? heroImage : "/" + heroImage, Astro.url).href
+    : heroImage?.src && new URL(heroImage.src, Astro.url).href
+  : undefined;
+const publishedISO = pubDate ? new Date(pubDate).toISOString() : undefined;
+const modifiedISO = updatedDate ? new Date(updatedDate).toISOString() : undefined;
+const pageUrl = Astro.url.href;
+const blogPostingJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  datePublished: publishedISO,
+  ...(modifiedISO && { dateModified: modifiedISO }),
+  ...(articleImageUrl && { image: articleImageUrl }),
+  author: { "@type": "Person", name: "yumslog", url: SITE_URL },
+  publisher: { "@type": "Organization", name: "yumslog", url: SITE_URL },
+  mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+};
 ---
 
-<BaseLayout title={title} description={description} image={typeof heroImage === 'string' ? heroImage : heroImage?.src}, ogType="article">
+<BaseLayout
+  title={title}
+  description={description}
+  image={typeof heroImage === "string" ? heroImage : heroImage?.src}
+  ogType="article"
+  articlePublishedTime={publishedISO}
+  articleModifiedTime={modifiedISO}
+  articleAuthor={SITE_URL}
+>
+  <Fragment slot="jsonld">
+    <script type="application/ld+json" set:html={JSON.stringify(blogPostingJsonLd)} />
+  </Fragment>
   <main class="md:flex md:justify-center">
-    <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
+    <article class="post-content prose max-w-prose prose-img:mx-auto">
       {heroImage && (
         typeof heroImage === 'string' ? (
-          <img src={heroImage} alt={title} class="w-full mb-6" width="750" height="422" />
+          <img src={heroImage} alt={title} class="w-full mb-4" width="750" height="422" />
         ) : (
-          <Image width={750} height={422} format="webp" src={heroImage} alt={title} class="w-full mb-6" />
+          <Image width={750} height={422} format="webp" src={heroImage} alt={title} class="w-full mb-4" />
         )
       )}
-      <h1 class="title my-2 text-4xl font-bold">{title}</h1>
+      <h1 class="title my-1 text-4xl font-bold">{title}</h1>
       {pubDate && <time>{displayDate}</time>}
       <br />
-      {badge && <div class="badge badge-secondary my-1">{badge}</div>}
+      {badge && <div class="badge badge-secondary my-0.5">{badge}</div>}
       {
         tags &&
           tags.map((tag) => (
@@ -42,8 +77,31 @@ import { Image } from "astro:assets";
           </div>
         )
       }
-      <div class="divider my-2"></div>
+      <div class="divider my-1"></div>
       <slot />
+
+      {(prevPost || nextPost) && (
+        <nav class="not-prose mt-10 pt-8 border-t border-base-300" aria-label="前後の記事">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {prevPost ? (
+              <a href={prevPost.url} class="group flex flex-col text-left p-4 rounded-lg hover:bg-base-200/60 transition-colors -mx-2">
+                <span class="text-xs font-medium uppercase tracking-wider text-base-content/60 mb-1">← 前の記事</span>
+                <span class="font-medium text-base-content group-hover:underline line-clamp-2">{prevPost.title}</span>
+              </a>
+            ) : (
+              <div />
+            )}
+            {nextPost ? (
+              <a href={nextPost.url} class="group flex flex-col text-right p-4 rounded-lg hover:bg-base-200/60 transition-colors -mx-2">
+                <span class="text-xs font-medium uppercase tracking-wider text-base-content/60 mb-1">次の記事 →</span>
+                <span class="font-medium text-base-content group-hover:underline line-clamp-2">{nextPost.title}</span>
+              </a>
+            ) : (
+              <div />
+            )}
+          </div>
+        </nav>
+      )}
     </article>
   </main>
 </BaseLayout>

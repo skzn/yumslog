@@ -1,8 +1,28 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Card from "../components/Card.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../lib/createSlug";
+import { SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from "../config";
+
+const allPosts = await getCollection("blog");
+const latestPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  url: SITE_URL,
+};
 ---
 
 <BaseLayout sideBarActiveItemID="home">
+  <Fragment slot="jsonld">
+    <script type="application/ld+json" set:html={JSON.stringify(webSiteJsonLd)} />
+  </Fragment>
   <article class="min-h-screen text-neutral-900">
     <!-- Hero -->
     <header class="pt-16 pb-24 md:pt-24 md:pb-32">
@@ -43,6 +63,31 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Latest from Blog -->
+    <section class="pb-24 md:pb-32" aria-labelledby="blog-heading">
+      <h2 id="blog-heading" class="text-sm font-medium uppercase tracking-widest text-neutral-500 mb-10">
+        Latest from Blog
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        {latestPosts.map((post) => (
+          <Card
+            title={post.data.title}
+            img={post.data.heroImage}
+            desc={post.data.description}
+            url={"/blog/" + createSlug(post.data.title, post.slug)}
+            target="_self"
+            badge={post.data.badge}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+      <p class="mt-6">
+        <a href="/blog" class="text-neutral-600 hover:text-neutral-900 font-medium underline underline-offset-2">
+          View all posts →
+        </a>
+      </p>
     </section>
 
     <!-- About Me -->

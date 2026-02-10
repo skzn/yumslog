@@ -11,9 +11,9 @@ const contentClass = compact
 const imageClass = compact
   ? "max-w-full md:max-w-[9rem] rounded-lg"
   : "max-w-full md:max-w-[13rem] rounded-lg";
-const titleClass = compact ? "text-lg font-bold" : "text-xl font-bold";
-const descClass = compact ? "py-1 text-sm leading-snug" : "py-1 text-1xl";
-const badgeClass = compact ? "badge badge-secondary badge-sm mx-2" : "badge badge-secondary mx-2";
+const titleClass = compact ? "text-base font-bold" : "text-lg font-bold";
+const descClass = compact ? "py-1 text-xs leading-snug" : "py-1 text-sm leading-snug";
+const badgeClass = compact ? "badge badge-secondary badge-sm mx-2" : "badge badge-secondary badge-sm mx-2";
 ---
 
 <div class={cardClass}>
@@ -51,7 +51,7 @@ const badgeClass = compact ? "badge badge-secondary badge-sm mx-2" : "badge badg
           {
             tags &&
               tags.map((tag) => (
-                <a href={`${tag_url}/${tag}`} class="badge badge-outline">
+                <a href={`${tag_url}/${tag}`} class="badge badge-outline badge-sm">
                   {tag}
                 </a>
               ))

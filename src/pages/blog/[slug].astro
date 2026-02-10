@@ -19,6 +19,19 @@ interface Props {
 const { entry } = Astro.props;
 const post: BlogSchema = entry.data;
 const { Content } = await entry.render();
+
+const allPosts = await getCollection("blog");
+const sorted = [...allPosts].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const currentIndex = sorted.findIndex((e) => createSlug(e.data.title, e.slug) === createSlug(entry.data.title, entry.slug));
+const nextEntry = currentIndex > 0 ? sorted[currentIndex - 1] : null;
+const prevEntry = currentIndex >= 0 && currentIndex < sorted.length - 1 ? sorted[currentIndex + 1] : null;
+
+const prevPost = prevEntry
+  ? { title: prevEntry.data.title, url: "/blog/" + createSlug(prevEntry.data.title, prevEntry.slug) }
+  : undefined;
+const nextPost = nextEntry
+  ? { title: nextEntry.data.title, url: "/blog/" + createSlug(nextEntry.data.title, nextEntry.slug) }
+  : undefined;
 ---
 
 <PostLayout
@@ -29,6 +42,8 @@ const { Content } = await entry.render();
   updatedDate={post.updatedDate}
   badge={post.badge}
   tags={post.tags}
+  prevPost={prevPost}
+  nextPost={nextPost}
 >
   <Content />
 </PostLayout>
