@@ -4,6 +4,7 @@ description: Obsidianから画像付きで投稿する際の動作確認用テ�
 pubDate: Feb 07 2026
 heroImage: ./hero.webp
 badge: NEW
+draft: true
 tags:
   - JAL
 ---

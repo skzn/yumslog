@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 import createSlug from "../lib/createSlug";
 import { SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
-const allPosts = await getCollection("blog");
+const allPosts = (await getCollection("blog")).filter((e) => !e.data.draft);
 const latestPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);

@@ -6,7 +6,7 @@ import createSlug from "../../lib/createSlug";
 import { SITE_URL } from "../../config";
 
 export async function getStaticPaths({ paginate }) {
-  const posts = await getCollection("blog");
+  const posts = (await getCollection("blog")).filter((e) => !e.data.draft);
   posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   return paginate(posts, { pageSize: 9 });
 }

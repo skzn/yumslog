@@ -5,6 +5,7 @@ const blogSchema = ({ image }) => z.object({
     description: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.string().optional(),
+    draft: z.boolean().optional(),
     // 画像は相対パス（./image.png）または絶対パス（/image.png）に対応
     heroImage: z.union([image(), z.string()]).optional(),
     badge: z.string().optional(),
@@ -32,6 +33,7 @@ export type BlogSchema = {
     description: string;
     pubDate: Date;
     updatedDate?: string;
+    draft?: boolean;
     heroImage?: any;
     badge?: string;
     tags?: string[];
