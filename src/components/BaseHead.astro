@@ -18,6 +18,8 @@ const { title, description, image = '/social_img.webp', ogType = 'website' } = A
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
+<link rel="canonical" href={Astro.url} />
+<meta name="robots" content="index,follow" />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -27,6 +29,7 @@ const { title, description, image = '/social_img.webp', ogType = 'website' } = A
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={ogType} />
 <meta property="og:url" content={Astro.url} />
+<meta property="og:site_name" content={title} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.url)} />

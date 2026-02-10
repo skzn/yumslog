@@ -11,14 +11,17 @@
             "id": "5a3b8dedb4bedc29",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "template/Blog Post.md.md",
-                "mode": "source",
-                "source": false
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
               },
-              "icon": "lucide-file",
-              "title": "Blog Post.md"
+              "icon": "lucide-layout-dashboard",
+              "title": "Untitled"
             }
           }
         ]
@@ -94,6 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "src/content/blog/2026-02-07-腸活/Blog Post.md 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +107,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "バックリンク"
+              "title": "Backlinks for Blog Post.md 1"
             }
           },
           {
@@ -131,7 +135,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-tags",
-              "title": "タグ"
+              "title": "Tags"
             }
           },
           {
@@ -145,7 +149,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-archive",
-              "title": "すべてのプロパティ"
+              "title": "All properties"
             }
           },
           {
@@ -154,20 +158,31 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "Untitled.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "アウトライン"
+              "title": "Outline of Untitled"
+            }
+          },
+          {
+            "id": "d02b42bb39b32b6a",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "git-view"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -177,33 +192,43 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "5a3b8dedb4bedc29",
   "lastOpenFiles": [
-    "dist/_astro/sample-image.Dw6UkgMe_1hVlNj.webp",
-    "dist/_astro/hero.CnYJD_BQ_Z10Bz4V.webp",
+    "Untitled.canvas",
+    "src/content/blog/test-obsidian-integration/index.md",
+    "src/content/blog/test-obsidian-integration/hero.webp",
+    "src/content/blog/2026-02-10-不労所得/index.md",
+    "src/content/blog/2026-02-10-不労所得/sample-image.webp",
+    "src/content/blog/2026-02-10-不労所得/hero.webp",
+    "src/content/blog/2026-02-10-不労所得",
+    "src/content/blog/post2.md",
+    "src/content/blog/2026-02-07-腸活/index.md",
+    "src/content/blog/2026-02-07/index.md",
+    "src/content/blog/2026-02-07-腸活/Blog Post.md 1.md",
+    "template/Blog Post.md.md",
+    "Untitled.md",
+    "Untitled.base",
+    "src/content/blog/post3.md",
+    "src/content/blog/2026-02-07-腸活",
+    "src/content/blog/2026-02-07/hero.png",
+    "src/content/blog/2026-02-07/sample-image.png",
+    "src/content/blog/test-obsidian-integration/sample-image.webp",
+    "src/content/blog/2026-02-07/heroのコピー.png",
+    "src/content/blog/2026-02-07/Gemini_Generated_Image_kjrgz0kjrgz0kjrg.png",
+    "src/content/blog/2026-02-07/hero.md",
+    "Gemini_Generated_Image_kjrgz0kjrgz0kjrg.png",
+    "src/content/blog/2026-02-07",
+    "src/content/blog/Gemini_Generated_Image_kjrgz0kjrgz0kjrg.png",
     "dist/index.html",
     "dist/store/item3/index.html",
     "dist/store/item2/index.html",
     "dist/store/item1/index.html",
     "dist/store/item3",
     "dist/store/item2",
-    "dist/store/item1",
-    "dist/store/index.html",
-    "dist/store",
-    "dist/services/index.html",
-    "dist/_astro/sample-image.Dw6UkgMe.webp",
-    "dist/_astro/hero.CnYJD_BQ.webp",
-    "dist/social_img.webp",
-    "dist/profile.webp",
-    "dist/post_img.webp",
-    "dist/itemPreview.webp",
-    "dist/favicon.svg",
-    "node_modules/fsevents/README.md",
-    "src/content/blog/test-obsidian-integration/index.md",
-    "src/content/blog/test-obsidian-integration/sample-image.webp",
-    "template/Blog Post.md.md"
+    "node_modules/fsevents/README.md"
   ]
 }

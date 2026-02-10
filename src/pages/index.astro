@@ -1,66 +1,61 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
-import { getCollection } from "astro:content";
-import createSlug from "../lib/createSlug"
-
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-const last_posts = posts.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="flex flex-col items-center mb-8">
-      <div class="avatar mb-6">
-        <div class="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-          <img src="/profile.webp" alt="Profile" />
+  <article class="min-h-screen text-neutral-900">
+    <!-- Hero -->
+    <header class="pt-16 pb-24 md:pt-24 md:pb-32">
+      <p class="text-[clamp(2.5rem,8vw,4.5rem)] font-semibold tracking-tight leading-[1.1] text-neutral-900">
+        Designing Logic,<br class="sm:hidden" /> Coding Vibes.
+      </p>
+      <p class="mt-6 text-lg md:text-xl text-neutral-600 font-normal max-w-xl">
+        UI/UX Designer / CDO / Personal Developer based in Tokyo.
+      </p>
+    </header>
+
+    <!-- Featured Projects -->
+    <section class="pb-24 md:pb-32" aria-labelledby="featured-heading">
+      <h2 id="featured-heading" class="text-sm font-medium uppercase tracking-widest text-neutral-500 mb-10">
+        Featured Projects
+      </h2>
+
+      <div class="rounded-2xl border border-neutral-200 bg-neutral-50/80 p-6 md:p-8 transition-shadow hover:shadow-lg">
+        <div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-8">
+          <div class="min-w-0 flex-1">
+            <h3 class="text-xl md:text-2xl font-semibold text-neutral-900">
+              JAL Life Status Simulator
+            </h3>
+            <p class="mt-3 text-neutral-600 leading-relaxed">
+              JALのLife Status Pointsを計算し、JGC修行やステータス維持をシミュレーションできるツール。複雑な計算を直感的なUIで。
+            </p>
+            <a
+              href="https://jal-life-status.yumslog.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-6 inline-flex items-center gap-2 rounded-lg bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-neutral-800 transition-colors"
+            >
+              ツールを使う
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
-      <div class="text-5xl font-bold text-center">Yumslog</div>
-      <div class="text-2xl py-3 font-semibold text-center text-base-content/70">UI/UX Designer & CDO / App Creator</div>
-    </div>
-    <div class="py-2">
-      <text class="text-lg leading-relaxed">
-        36歳、未婚、CDO。AIとVibe Codingで『月3万稼ぐアプリ』を量産してFIREを目指す開発ログ。<br />
-        デザイン思考とテクノロジーを駆使して、個人でも戦えるプロダクト開発を実践しています。
-      </text>
-    </div>
-    <div class="mt-8">
-      <a class="btn btn-primary" href="/blog">ブログを読む</a>
-      <a href="/projects" class="btn btn-outline ml-5">プロジェクト一覧</a>
-    </div>
-  </div>
+    </section>
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Featured Projects</div>
-  </div>
-
-  <HorizontalCard
-    title="JAL LSP Calculator"
-    img="/post_img.webp"
-    desc="JALの生涯ステータスポイントを瞬時に計算するWebツール。フライト履歴を入力するだけで、ステータス達成までの必要ポイントを可視化します。"
-    url="#"
-    badge="NEW"
-  />
-
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
-  </div>
-
-  {
-    last_posts.map((post) => (
-      <>
-        <HorizontalCard
-          title={post.data.title}
-          img={post.data.heroImage}
-          desc={post.data.description}
-          url={"/blog/" + createSlug(post.data.title, post.slug)}
-          target="_self"
-          badge={post.data.badge}
-        />
-        <div class="divider my-0" />
-      </>
-    ))
-  }
+    <!-- About Me -->
+    <section class="pb-24 md:pb-32" aria-labelledby="about-heading">
+      <h2 id="about-heading" class="text-sm font-medium uppercase tracking-widest text-neutral-500 mb-10">
+        About Me
+      </h2>
+      <div class="max-w-2xl">
+        <p class="text-lg font-medium text-neutral-900">Yums (skzn)</p>
+        <p class="mt-3 text-neutral-600 leading-relaxed">
+          現役UIUXデザイナー。Cursor × Next.jsを使ったVibe Codingで、JAL Life Status計算アプリを個人開発しました。AI時代のプロダクト作りや、デザインとエンジニアリングの境界線について発信します。
+        </p>
+      </div>
+    </section>
+  </article>
 </BaseLayout>

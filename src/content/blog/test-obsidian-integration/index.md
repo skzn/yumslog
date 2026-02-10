@@ -1,10 +1,11 @@
 ---
-title: "Obsidian連携テスト記事"
-description: "Obsidianから画像付きで投稿する際の動作確認用テスト記事です。相対パスで画像が正しく表示されるかを検証します。"
-pubDate: "Feb 07 2026"
-heroImage: "./hero.webp"
-badge: "NEW"
-tags: ["test", "obsidian"]
+title: 【JAL修行】沖縄アイランドホッピングで16レグを目指したら結構難しかった
+description: Obsidianから画像付きで投稿する際の動作確認用テスト記事です。相対パスで画像が正しく表示されるかを検証します。
+pubDate: Feb 07 2026
+heroImage: ./hero.webp
+badge: NEW
+tags:
+  - JAL
 ---
 
 ## はじめに

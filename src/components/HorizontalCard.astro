@@ -1,14 +1,24 @@
 ---
-const { title, img, desc, url, badge, tags, target = "_blank" } = Astro.props;
+const { title, img, desc, url, badge, tags, target = "_blank", compact = false } = Astro.props;
 import { Image } from "astro:assets";
 const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
+const cardClass = compact
+  ? "rounded-lg bg-base-100 hover:shadow-md transition ease-in-out"
+  : "rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]";
+const contentClass = compact
+  ? "hero-content flex-col md:flex-row gap-3 p-4"
+  : "hero-content flex-col md:flex-row";
+const imageClass = compact
+  ? "max-w-full md:max-w-[9rem] rounded-lg"
+  : "max-w-full md:max-w-[13rem] rounded-lg";
+const titleClass = compact ? "text-lg font-bold" : "text-xl font-bold";
+const descClass = compact ? "py-1 text-sm leading-snug" : "py-1 text-1xl";
+const badgeClass = compact ? "badge badge-secondary badge-sm mx-2" : "badge badge-secondary mx-2";
 ---
 
-<div
-  class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]"
->
+<div class={cardClass}>
   <a href={url} target={target}>
-    <div class="hero-content flex-col md:flex-row">
+    <div class={contentClass}>
       {
         img && (
           typeof img === 'string' ? (
@@ -17,7 +27,7 @@ const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
               width="750"
               height="422"
               alt={title}
-              class="max-w-full md:max-w-[13rem] rounded-lg"
+              class={imageClass}
             />
           ) : (
             <Image
@@ -26,17 +36,17 @@ const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
               height={422}
               format="webp"
               alt={title}
-              class="max-w-full md:max-w-[13rem] rounded-lg"
+              class={imageClass}
             />
           )
         )
       }
       <div class="grow w-full">
-        <h1 class="text-xl font-bold">
+        <h1 class={titleClass}>
           {title}
-          {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
+          {badge && <div class={badgeClass}>{badge}</div>}
         </h1>
-        <p class="py-1 text-1xl">{desc}</p>
+        <p class={descClass}>{desc}</p>
         <div class="card-actions justify-end">
           {
             tags &&
